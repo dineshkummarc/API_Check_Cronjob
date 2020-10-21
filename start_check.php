@@ -1,25 +1,48 @@
 <?php
+	
+	//Set state = 1 file
+	function set_state_start(){
+		$myFile = "/home/hvn0220437/supercleaner.info/public_html/state.txt";
+		$fh = fopen($myFile, 'w+') or die("Cannot open file");
+		$myFileContents = 1;
+		fwrite($fh, $myFileContents);
+		fclose($fh);
+		$myFile2 = "/home/hvn0220437/supercleaner.info/public_html/output.txt";
+		$fh2 = fopen($myFile2, 'a') or die("Cannot append file");
+		$annouce = "Bắt đầu chạy!"."<br>";
+		fwrite($fh2, $annouce);
+		fclose($fh2);
+	}
 
 	//Write input file
 	function write_token_file($token){
-		$myFile = "token.txt";
-		$fh = fopen($myFile, 'w') or die("Can't open file.");
+		$myFile = "/home/hvn0220437/supercleaner.info/public_html/token.txt";
+		$fh = fopen($myFile, 'w+') or die("Cannot write token file");
 		fwrite($fh, $token);
+		fclose($fh);
+	}
+
+	//Erase min max file first
+	function reset_number_file(){
+		$myFile = "/home/hvn0220437/supercleaner.info/public_html/number.txt";
+		$fh = fopen($myFile, 'w+') or die("Cannot write number file");
+		$new = "";
+		fwrite($fh, $new);
 		fclose($fh);
 	}
 
 	//Write min max file
 	function write_number_file($number){
-		$myFile = "number.txt";
-		$fh = fopen($myFile, 'a') or die("Can't open file.");
+		$myFile = "/home/hvn0220437/supercleaner.info/public_html/number.txt";
+		$fh = fopen($myFile, 'a') or die("Cannot write number file");
 		fwrite($fh, $number);
 		fclose($fh);
 	}
 
 	//Write to output file
 	function write_output_file($result = array()){
-		$myFile= "output.txt";
-		$fh = fopen($myFile, 'a') or die("Can't open file.");		
+		$myFile= "/home/hvn0220437/supercleaner.info/public_html/output.txt";
+		$fh = fopen($myFile, 'a') or die("Cannot append output file");		
 		$time = date('H:i:s');
 		if($result['message_id'] != ""){
 			$newOutput = "[ ".$time." ]"." Success!The message id is:".$result['message_id']."<br>";
@@ -54,29 +77,16 @@
 		
 	//Main function
 	if(isset($_POST['submit'])){
+		reset_number_file();
 		$min = $_POST['min_input'];
 		$max = $_POST['max_input'];
 		$token_input = $_POST['token_input'];
 		write_number_file($min);
-		$delimeter = "-";
+		$delimeter = "+";
 		write_number_file($delimeter);
 		write_number_file($max);
 		write_token_file($token_input);
-		// $token_array = preg_split("/\\r\\n|\\r|\\n/", $token_input);
-		// $i = 0;
-		// for($i == 0; $i < count($token_array); $i++){
-		// 	if($token_array[$i] != ""){
-		// 		//echo $token_array[$i]."<br>";
-		// 		$to = "/topics/all";
-		// 		$data = array(
-		// 			'body' => 'New message'
-		// 		);
-		// 		$apiKey = $token_array[$i];
-		// 		$result = send_notification($to,$data,$apiKey);
-		// 		write_output_file($result);
-		// 	}
-		// }
-		header("Location: /xampp/PHP0919E/API%20check%20web/checkapi.php?action=success");
+		header("Location: /checkapi.php?action=success");
 	}else{
 		echo "<p style='color:red'>ERROR 404. Cannot find the page!</p>";
 	}

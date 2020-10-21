@@ -1,0 +1,1 @@
+*/2 * * * * /usr/bin/php /home/hvn0220437/supercleaner.info/public_html/cron.php
