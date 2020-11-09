@@ -2,12 +2,12 @@
 	
 	//Set state = 1 file
 	function set_state_start(){
-		$myFile = "/home/hvn0220437/supercleaner.info/public_html/state.txt";
+		$myFile = "state.txt";
 		$fh = fopen($myFile, 'w+') or die("Cannot open file");
 		$myFileContents = 1;
 		fwrite($fh, $myFileContents);
 		fclose($fh);
-		$myFile2 = "/home/hvn0220437/supercleaner.info/public_html/output.txt";
+		$myFile2 = "output.txt";
 		$fh2 = fopen($myFile2, 'a') or die("Cannot append file");
 		$annouce = "Bắt đầu chạy!"."<br>";
 		fwrite($fh2, $annouce);
@@ -16,7 +16,7 @@
 
 	//Write input file
 	function write_token_file($token){
-		$myFile = "/home/hvn0220437/supercleaner.info/public_html/token.txt";
+		$myFile = "token.txt";
 		$fh = fopen($myFile, 'w+') or die("Cannot write token file");
 		fwrite($fh, $token);
 		fclose($fh);
@@ -24,7 +24,7 @@
 
 	//Erase min max file first
 	function reset_number_file(){
-		$myFile = "/home/hvn0220437/supercleaner.info/public_html/number.txt";
+		$myFile = "number.txt";
 		$fh = fopen($myFile, 'w+') or die("Cannot write number file");
 		$new = "";
 		fwrite($fh, $new);
@@ -33,7 +33,7 @@
 
 	//Write min max file
 	function write_number_file($number){
-		$myFile = "/home/hvn0220437/supercleaner.info/public_html/number.txt";
+		$myFile = "number.txt";
 		$fh = fopen($myFile, 'a') or die("Cannot write number file");
 		fwrite($fh, $number);
 		fclose($fh);
@@ -41,7 +41,7 @@
 
 	//Write to output file
 	function write_output_file($result = array()){
-		$myFile= "/home/hvn0220437/supercleaner.info/public_html/output.txt";
+		$myFile= "output.txt";
 		$fh = fopen($myFile, 'a') or die("Cannot append output file");		
 		$time = date('H:i:s');
 		if($result['message_id'] != ""){
@@ -86,7 +86,7 @@
 		write_number_file($delimeter);
 		write_number_file($max);
 		write_token_file($token_input);
-		header("Location: /checkapi.php?action=success");
+		header("Location: checkapi.php?action=success");
 	}else{
 		echo "<p style='color:red'>ERROR 404. Cannot find the page!</p>";
 	}
