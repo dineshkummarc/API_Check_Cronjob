@@ -1,7 +1,7 @@
 <?php
 	//Get the output
 	function get_output_file(){
-		$myFile = "/home/hvn0220437/supercleaner.info/public_html/output.txt";
+		$myFile = "output.txt";
 		$fh = fopen($myFile, 'r') or die("Cannot open file");
 		if(filesize($myFile) > 0){
 			$myFileContents = fread($fh, filesize($myFile));
@@ -12,7 +12,7 @@
 
 	//Get the min number
 	function get_min_number_file(){
-		$myFile = "/home/hvn0220437/supercleaner.info/public_html/number.txt";
+		$myFile = "number.txt";
 		$fh = fopen($myFile, 'r') or die("Cannot open file");
 		$myFileContents = fread($fh, filesize($myFile));
 		//print_r($myFileContents);
@@ -23,7 +23,7 @@
 
 	//Get the max number
 	function get_max_number_file(){
-		$myFile = "/home/hvn0220437/supercleaner.info/public_html/number.txt";
+		$myFile = "number.txt";
 		$fh = fopen($myFile, 'r') or die("Cannot open file");
 		$myFileContents = fread($fh, filesize($myFile));
 		$myFile_array = explode("+",$myFileContents);
@@ -33,19 +33,19 @@
 
 	//Check if there is tokens input yet or not
 	function token_input_valid(){
-		$myFile = "/home/hvn0220437/supercleaner.info/public_html/token.txt";
+		$myFile = "token.txt";
 		$fh = fopen($myFile, 'r') or die("Cannot open file");
 		if (filesize($myFile) == 0 && !isset($_GET['action'])) {
 			return 0;
 		}else{
-			header("Location: /checkapi.php?action=success");
+			header("Location: checkapi.php?action=success");
 		}
 		fclose($fh);
 	}
 
 	//Get the token that have been input
 	function get_token_input(){
-		$myFile = "/home/hvn0220437/supercleaner.info/public_html/token.txt";
+		$myFile = "token.txt";
 		$fh = fopen($myFile, 'r') or die("Cannot open file");
 		if(filesize($myFile) > 0){	
 			$myFileContents = fread($fh, filesize($myFile));
@@ -58,7 +58,7 @@
 
 	//Check state file
 	function check_state_file(){
-		$myFile = "/home/hvn0220437/supercleaner.info/public_html/state.txt";
+		$myFile = "state.txt";
 		$fh = fopen($myFile, 'r') or die("Cannot open file");
 		$myFileContents = fread($fh, filesize($myFile));
 		fclose($fh);
@@ -195,13 +195,13 @@
 				<label>MAX</label>
 				<input type="number" name="max_input" id="max_input" class="number-input" min="0" max="60" required value="<?php  get_max_number_file();?>">
 
-				<a href="/continue-check.php" id="start-button"><button type="button" class="submit-button">START</button></a>
+				<a href="continue-check.php" id="start-button"><button type="button" class="submit-button">START</button></a>
 
-				<a href="/stop-check.php" id="stop-button"><button type="button" class="submit-button">STOP</button></a>
+				<a href="stop-check.php" id="stop-button"><button type="button" class="submit-button">STOP</button></a>
 
 				<button type="submit" id="save-button" name="submit" class="submit-button">SAVE</button>
 
-				<a href="/remove.php" id="clear-button"><button type="button" class="submit-button">CLEAR</button></a>
+				<a href="remove.php" id="clear-button"><button type="button" class="submit-button">CLEAR</button></a>
 			</div>
 
 			<div id="bottom_left_column">
