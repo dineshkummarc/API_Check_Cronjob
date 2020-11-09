@@ -8,7 +8,7 @@
 	// }
 
 	function remove_output_file(){
-		$myFile = "/home/hvn0220437/supercleaner.info/public_html/output.txt";
+		$myFile = "output.txt";
 		$fh = fopen($myFile, 'w+') or die("Can't open file.");
 		$token = "";
 		fwrite($fh, $token);
@@ -16,5 +16,5 @@
 	}
 
 	remove_output_file();
-	header("Location: /checkapi.php?action=success");
+	header("Location: checkapi.php?action=success");
 ?>
